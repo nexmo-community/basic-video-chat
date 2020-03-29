@@ -1,3 +1,15 @@
+fetch(location.pathname, { method: "POST" })
+  .then(res => {
+    return res.json();
+  })
+  .then(res => {
+    const apiKey = res.apiKey;
+    const sessionId = res.sessionId;
+    const token = res.token;
+    initializeSession(apiKey, sessionId, token);
+  })
+  .catch(handleCallback);
+
 function initializeSession(apiKey, sessionId, token) {
   // Create a session object with the sessionId
   const session = OT.initSession(apiKey, sessionId);
@@ -10,21 +22,21 @@ function initializeSession(apiKey, sessionId, token) {
       width: "100%",
       height: "100%"
     },
-    handleError
+    handleCallback
   );
 
   // Connect to the session
-  session.connect(token, function(error) {
+  session.connect(token, error => {
     // If the connection is successful, initialize the publisher and publish to the session
     if (error) {
-      handleError(error);
+      handleCallback(error);
     } else {
-      session.publish(publisher, handleError);
+      session.publish(publisher, handleCallback);
     }
   });
 
   // Subscribe to a newly created stream
-  session.on("streamCreated", function(event) {
+  session.on("streamCreated", event => {
     session.subscribe(
       event.stream,
       "subscriber",
@@ -33,27 +45,16 @@ function initializeSession(apiKey, sessionId, token) {
         width: "100%",
         height: "100%"
       },
-      handleError
+      handleCallback
     );
   });
 }
 
-// Handling all of our errors here by alerting them
-function handleError(error) {
+// Callback handler
+function handleCallback(error) {
   if (error) {
-    alert(error.message);
+    console.log("error: " + error.message);
+  } else {
+    console.log("callback success");
   }
 }
-
-fetch(location.pathname, { method: "POST" })
-  .then(function(res) {
-    return res.json();
-  })
-  .then(function(res) {
-    console.log(res);
-    const apiKey = res.apiKey;
-    const sessionId = res.sessionId;
-    const token = res.token;
-    initializeSession(apiKey, sessionId, token);
-  })
-  .catch(handleError);
