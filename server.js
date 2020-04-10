@@ -13,12 +13,12 @@ app.get("/", (request, response) => {
   response.sendFile(__dirname + "/views/landing.html");
 });
 
-app.get("/session/:name", (request, response) => {
+app.get("/session/:room", (request, response) => {
   response.sendFile(__dirname + "/views/index.html");
 });
 
-app.post("/session/:name", (request, response) => {
-  const roomName = request.params.name;
+app.post("/session/:room", (request, response) => {
+  const roomName = request.params.room;
   // Check if the session already exists
   if (sessions[roomName]) {
     // Generate the token
