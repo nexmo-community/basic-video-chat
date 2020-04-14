@@ -44,7 +44,7 @@ function generateToken(roomName, response) {
     role: "publisher",
     data: `roomname=${roomName}`
   };
-  // Generate token with the OpenTok SDK
+  // Generate token with the Video API Client SDK
   let token = OT.generateToken(
     sessions[roomName],
     tokenOptions

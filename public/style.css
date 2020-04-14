@@ -28,21 +28,21 @@ main {
   position: relative;
 }
 
-form {
+input,
+button {
+  font-size: inherit;
+  padding: 0.5em;
+}
+
+.registration {
   display: flex;
   flex-direction: column;
   margin: auto;
 }
 
-input {
-  font-size: inherit;
-  padding: 0.5em;
+.registration input[type="text"] {
+  display: block;
   margin-bottom: 1em;
-}
-
-button {
-  font-size: inherit;
-  padding: 0.5em;
 }
 
 .subscriber {

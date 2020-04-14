@@ -1,6 +1,6 @@
 # Create a Basic Video Chat with Vonage Video API
 
-This series of tutorials will explore the [Vonage Video API](https://tokbox.com/developer/) and what you can build with it. The Video API is very robust and highly customisable, so we will gradually build up and expand the features of our application, starting off with the most basic audio-video chat.
+This series of tutorials will explore the [Vonage Video API](https://tokbox.com/developer/) (formerly TokBox OpenTok) and what you can build with it. The Video API is very robust and highly customisable, and in each post we’ll show how to implement a specific feature using the API, starting with the most basic audio-video chat.
 
 We will not be using any frontend frameworks for this series, just vanilla Javascript in order to keep the focus on the Vonage Video API itself. At the end of this tutorial, you should be able to start an audio-video chat with a friend by sharing a link with them.
 
